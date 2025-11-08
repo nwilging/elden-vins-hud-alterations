@@ -16,7 +16,7 @@ jobs:
       - name: Setup Dependencies
         run: |
           sudo apt-get update && sudo apt-get install -y zip unzip default-jre wget
-          wget -o ffdec.zip 'https://github.com/jindrapetrik/jpexs-decompiler/releases/download/version24.1.0/ffdec_24.1.0.zip'
+          wget -O ffdec.zip https://github.com/jindrapetrik/jpexs-decompiler/releases/download/version24.1.0/ffdec_24.1.0.zip
           unzip ffdec.zip -d ffdec
       - name: Run Build
         run: |
