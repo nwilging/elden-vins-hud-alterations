@@ -1,0 +1,32 @@
+name: Build Release Artifacts
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  build:
+    name: Generate Build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+      - name: Setup Dependencies
+        run: |
+          sudo apt-get update && sudo apt-get install -y zip unzip default-jre wget
+          wget -o ffdec.zip https://github.com/jindrapetrik/jpexs-decompiler/releases/download/version24.1.0/ffdec_24.1.0.zip
+          unzip ffdec.zip -d ffdec
+      - name: Run Build
+        run: |
+          ./bin/NR_XML2GFX.sh
+          ./bin/package.sh
+      - name: Upload Release Asset
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: package.zip
+          tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true
