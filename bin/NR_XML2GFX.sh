@@ -5,5 +5,5 @@ SOURCE_PATH=$(pwd)/src
 
 for file in $SOURCE_PATH/*.xml;
 do
-  java -jar $FFDEC_PATH.jar -xml2swf "$file" "${file%.xml}.gfx"
+  bash $FFDEC_PATH -xml2swf "$file" "${file%.xml}.gfx"
 done
