@@ -20,8 +20,8 @@ jobs:
           unzip ffdec.zip -d ffdec
       - name: Run Build
         run: |
-          ./bin/NR_XML2GFX.sh
-          ./bin/package.sh
+          bash bin/NR_XML2GFX.sh
+          bash bin/package.sh
       - name: Upload Release Asset
         uses: svenstaro/upload-release-action@v2
         with:
